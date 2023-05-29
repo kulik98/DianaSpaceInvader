@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "699572217647",
+    "project_id": "spaceinvader2023-a6d37",
+    "storage_bucket": "spaceinvader2023-a6d37.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:699572217647:android:a08c01c8f979d9262f63da",
+        "android_client_info": {
+          "package_name": "com.example.dianaspaceinvader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "699572217647-e9oj3dr1mc8kak935ie4p9ebrgrlbr92.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGBu8OnKLcAfJSMYgKLT9F_OAnT6CbxPY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "699572217647-e9oj3dr1mc8kak935ie4p9ebrgrlbr92.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
