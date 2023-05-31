@@ -24,6 +24,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class StartActivity extends AppCompatActivity {
@@ -36,7 +41,9 @@ public class StartActivity extends AppCompatActivity {
 
     private StartView startView;
     private TextView txtWelcome;
-
+    private int score = 0;
+    private DatabaseReference myRef;
+    private FirebaseDatabase database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -44,7 +51,8 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken("125323192336-vm9h0b4sb4f7nkdcab3huehu831bi7r4.apps.googleusercontent.com")
+                .requestId()
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
@@ -94,11 +102,30 @@ public class StartActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             txtWelcome.setText(acct.getEmail());
-            Toast.makeText(getApplicationContext(), "cool", Toast.LENGTH_LONG).show();
+            //save data to firebase
+            database = FirebaseDatabase.getInstance();
+            myRef = database.getReference();
+
+            myRef.child(acct.getId()).child("Score").setValue(score);
+
+            //get data from firebase
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    int res = snapshot.child(acct.getId()).child("Score").getValue(Integer.class);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
         } else {
             signIn();
         }
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -127,6 +154,8 @@ public class StartActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("TAG", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            txtWelcome.setText(acct.getEmail());
+
 
                         } else {
                             // If sign in fails, display a message to the user.

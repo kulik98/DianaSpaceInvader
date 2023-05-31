@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "699572217647",
-    "project_id": "spaceinvader2023-a6d37",
-    "storage_bucket": "spaceinvader2023-a6d37.appspot.com"
+    "project_number": "125323192336",
+    "project_id": "dianaspaceinvader",
+    "storage_bucket": "dianaspaceinvader.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:699572217647:android:a08c01c8f979d9262f63da",
+        "mobilesdk_app_id": "1:125323192336:android:037fb16160ab1dd6d20295",
         "android_client_info": {
           "package_name": "com.example.dianaspaceinvader"
         }
       },
       "oauth_client": [
         {
-          "client_id": "699572217647-e9oj3dr1mc8kak935ie4p9ebrgrlbr92.apps.googleusercontent.com",
+          "client_id": "125323192336-4589sv3q30hanod51fpvqddu1pbc5bja.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dianaspaceinvader",
+            "certificate_hash": "16af02f6ba2e4eb5557d7d55b2b9d4d7643cbbad"
+          }
+        },
+        {
+          "client_id": "125323192336-vm9h0b4sb4f7nkdcab3huehu831bi7r4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDGBu8OnKLcAfJSMYgKLT9F_OAnT6CbxPY"
+          "current_key": "AIzaSyDt0qpljRpI11qxac_RY95K_p8uXyPvU38"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "699572217647-e9oj3dr1mc8kak935ie4p9ebrgrlbr92.apps.googleusercontent.com",
+              "client_id": "125323192336-vm9h0b4sb4f7nkdcab3huehu831bi7r4.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

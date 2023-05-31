@@ -37,6 +37,7 @@
         android:layout_height="73dp"
         android:layout_marginTop="24dp"
         android:text="yo"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
