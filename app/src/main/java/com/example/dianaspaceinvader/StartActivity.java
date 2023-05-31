@@ -40,8 +40,8 @@ public class StartActivity extends AppCompatActivity {
     private GoogleSignInAccount acct;
 
     private StartView startView;
-    private TextView txtWelcome;
-    private int score = 0;
+    private TextView txtWelcome, txtScore;
+    private int score = 120;
     private DatabaseReference myRef;
     private FirebaseDatabase database;
     @Override
@@ -61,6 +61,7 @@ public class StartActivity extends AppCompatActivity {
         startView = new StartView(this);
 
         txtWelcome = findViewById(R.id.textView);
+        //txtScore = findViewById(R.id)
         Button button = (Button) findViewById(R.id.startgame);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -107,12 +108,21 @@ public class StartActivity extends AppCompatActivity {
             myRef = database.getReference();
 
             myRef.child(acct.getId()).child("Score").setValue(score);
+            myRef.child("GlobalScore").setValue(100);
 
             //get data from firebase
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    int res = snapshot.child(acct.getId()).child("Score").getValue(Integer.class);
+                    int score = snapshot.child(acct.getId()).child("Score").getValue(Integer.class);
+                    int globalscore = snapshot.child("GlobalScore").getValue(Integer.class);
+                    if(score>globalscore){
+                        myRef.child("GlobalScore").setValue(score);
+                        txtWelcome.setText(new StringBuilder().append("Welcome ").append(acct.getEmail()).append("\nYou score: ").append(score).append("\nGlobal score: ").append(globalscore).toString());
+                    }
+                    else {
+                        txtWelcome.setText(new StringBuilder().append("Welcome ").append(acct.getEmail()).append("\nYou score: ").append(score).append("\nGlobal score: ").append(globalscore).toString());
+                    }
                 }
 
                 @Override
@@ -154,9 +164,6 @@ public class StartActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("TAG", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            txtWelcome.setText(acct.getEmail());
-
-
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("TAG", "signInWithCredential:failure", task.getException());
